@@ -2,12 +2,12 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![React](https://img.shields.io/badge/React-19.0-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue) ![Tailwind](https://img.shields.io/badge/Tailwind-3.0-38bdf8)
 
-**AlphaCouncil AI** 是一个基于前沿大语言模型（LLM）技术的专业级 A 股市场分析系统。它模拟了一家顶级基金公司的完整投资委员会决策流程，由 **10 个不同角色的 AI 智能体** 组成，通过四阶段的严谨工作流，将实时行情数据转化为专业的投资决策。
+**AlphaCouncil AI** 是一个基于前沿大语言模型（LLM）技术的专业级 A 股市场分析系统。它模拟了一家顶级基金公司的完整投资委员会决策流程，由 **12 个不同角色的 AI 智能体** 组成，通过四阶段的严谨工作流，将实时行情数据转化为专业的投资决策。
 
 ## 核心特性
 
 *   **👥 拟人化专家团队**：包含宏观、行业、技术、资金、基本面等 5 个维度的分析师，以及总监、风控和总经理角色。
-*   **🚀 多模型协同 (Model Agnostic)**：支持混合调度 **Google Gemini 2.5/3.0**、**DeepSeek-R1 (Reasoner)** 和 **通义千问 (Qwen)** 模型。
+*   **🚀 多模型协同 (Model Agnostic)**：支持混合调度 **Google Gemini 3.1 Pro**、**DeepSeek V3.2 / R1**、**通义千问 Qwen 3 Max Thinking** 和 **GPT-5.2 Pro** 模型。
 *   **📈 实时数据驱动**：接入聚合数据 API，实时获取沪深 A 股的五档盘口、成交量及价格异动，确保分析基于实盘数据而非幻觉。
 *   **⚡ 并行与串行工作流**：实现了复杂的异步工作流，既保证了基础分析的效率（并行），又确保了决策逻辑的连贯性（串行整合）。
 *   **🎨 沉浸式 UI 体验**：采用赛博朋克风格的深色界面，配备打字机动画与机械键盘音效，提供极客般的交互体验。
@@ -165,4 +165,4 @@
 
 ---
 
-Developed with ❤️ by 张一依有把越女剑.
+Originally created by 张一依有把越女剑, optimized and enhanced by [chenmisss](https://github.com/chenmisss).
