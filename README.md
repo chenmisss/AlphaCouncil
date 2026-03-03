@@ -2,119 +2,148 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![React](https://img.shields.io/badge/React-19.0-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue) ![Tailwind](https://img.shields.io/badge/Tailwind-3.0-38bdf8)
 
-**AlphaCouncil AI** 是一个基于前沿大语言模型（LLM）技术的专业级 A 股市场分析系统。它模拟了一家顶级基金公司的完整投资委员会决策流程，由 **12 个不同角色的 AI 智能体** 组成，通过四阶段的严谨工作流，将实时行情数据转化为专业的投资决策。
+**AlphaCouncil AI** 是一个基于前沿大语言模型（LLM）技术的专业级 A 股市场分析系统。它模拟了一家顶级基金公司的完整投资委员会决策流程，由 **12 个不同角色的 AI 智能体** 组成，通过四阶段的严谨工作流，将实时行情数据转化为专业的投资分析报告。
 
 ## 核心特性
 
-*   **👥 拟人化专家团队**：包含宏观、行业、技术、资金、基本面等 5 个维度的分析师，以及总监、风控和总经理角色。
-*   **🚀 多模型协同 (Model Agnostic)**：支持混合调度 **Google Gemini 3.1 Pro**、**DeepSeek V3.2 / R1**、**通义千问 Qwen 3 Max Thinking** 和 **GPT-5.2 Pro** 模型。
-*   **📈 实时数据驱动**：接入聚合数据 API，实时获取沪深 A 股的五档盘口、成交量及价格异动，确保分析基于实盘数据而非幻觉。
-*   **⚡ 并行与串行工作流**：实现了复杂的异步工作流，既保证了基础分析的效率（并行），又确保了决策逻辑的连贯性（串行整合）。
-*   **🎨 沉浸式 UI 体验**：采用赛博朋克风格的深色界面，配备打字机动画与机械键盘音效，提供极客般的交互体验。
+* **👥 12 位拟人化 AI 专家**：涵盖宏观、行业、大盘、技术、资金、基本面六大维度分析师，加上总监、风控、机会分析师和总经理。
+* **🚀 四大顶级 AI 模型协同**：混合调度 **Gemini 3.1 Pro / 3 Flash**、**DeepSeek V3.2 / R1**、**通义千问 Qwen 3 Max Thinking** 和 **GPT-5.2 Pro**，按角色匹配最佳模型。
+* **📈 实时数据驱动**：接入聚合数据 API + 东方财富实时资金流向，获取沪深 A 股的五档盘口、K 线、主力资金、北向资金等多维数据。
+* **🔍 联网搜索验证**：基本面总监和风控总监具备 Google Search Grounding 联网能力，实时验证数据并搜索最新新闻/风险。
+* **📊 K 线图视觉分析**：技术分析师通过 Gemini Vision 多模态能力，直接"看"K 线图识别形态。
+* **⚡ 并行与串行工作流**：第一阶段 6 人并行分析，后续阶段串行整合、审核和决策，兼顾效率与逻辑连贯性。
+* **🎨 赛博朋克沉浸式 UI**：深色界面 + 打字机动画 + 机械键盘音效 + 行业配置图表。
+* **💎 Freemium 商业模式**：内置支付宝付费解锁功能（可选），免费用户可体验第一阶段分析。
 
 ---
 
 ## 🏛️ 智能体架构 (Agent Architecture)
 
-系统共包含 10 位 AI 专家，分为四个层级：
+系统共包含 **12 位 AI 专家**，分为四个层级：
 
-### 第一阶段：专业分析师团队 (并行执行)
-| 角色 | 职责 | 侧重点 |
+### 第一阶段：专业分析师团队（6 人并行执行）
+
+| 角色 | 使用模型 | 职责 |
 | :--- | :--- | :--- |
-| **🌐 宏观政策分析师** | 分析宏观经济数据与政策导向 | GDP, CPI, 货币政策, 系统性风险 |
-| **📊 行业轮动专家** | 跟踪行业景气度与板块轮动 | 产业链上下游, 行业指数, 热点切换 |
-| **📈 技术分析专家** | 基于 K 线与形态判断趋势 | 支撑/压力位, 趋势强度, 买卖点 |
-| **💰 资金流向分析师** | 监控主力与散户资金博弈 | 北向资金, 融资融券, 盘口买卖单分析 |
-| **📑 基本面估值分析师** | 深度挖掘财报与估值逻辑 | PE/PB, 财务健康度, 盈利预测 |
+| 🌐 **宏观政策分析师** | Gemini 3 Flash | 分析北向资金、货币政策及系统性风险 |
+| 📊 **行业轮动专家** | Gemini 3 Flash | 跟踪行业景气度、轮动规律，输出配置图表 |
+| 📈 **大盘趋势分析师** | Qwen Max | 专注大盘指数走势，判断个股 vs 大盘表现 |
+| 📉 **技术分析专家** | Gemini 3 Flash + Vision | K 线图视觉分析、均线、支撑/阻力位、量价关系 |
+| 💰 **资金流向分析师** | Gemini 3 Flash | 主力资金动向、盘口密码、出货预警/抄底信号 |
+| 📑 **基本面估值分析师** | DeepSeek R1 | 一利五率财务分析、PE 估值、3 年趋势研判 |
 
-### 第二阶段：总监管理团队 (整合层)
-| 角色 | 职责 |
-| :--- | :--- |
-| **👥 基本面研究总监** | 整合宏观、行业、个股基本面报告，消除分歧，形成价值判断。 |
-| **⚡ 市场动能总监** | 结合技术面与资金面报告，判断市场情绪与短期爆发力。 |
+### 第二阶段：总监管理团队（整合层）
 
-### 第三阶段：风险控制团队 (审核层)
-| 角色 | 职责 |
-| :--- | :--- |
-| **🛡️ 系统性风险总监** | 极度风险厌恶型。专注于寻找市场崩盘、流动性枯竭等黑天鹅风险。 |
-| **⚖️ 组合风险总监** | 关注具体交易层面的风险，制定止损位、仓位上限和波动率控制。 |
+| 角色 | 使用模型 | 职责 |
+| :--- | :--- | :--- |
+| 👥 **基本面研究总监** | Gemini 3.1 Pro 🌐 | 整合宏观/行业/估值报告，联网搜索验证数据，裁决分歧 |
+| ⚡ **市场动能总监** | DeepSeek R1 | 整合技术面+资金面，判断动能方向与强度 |
+
+### 第三阶段：风控与机会团队（审核层）
+
+| 角色 | 使用模型 | 职责 |
+| :--- | :--- | :--- |
+| 🛡️ **系统性风险总监** | Qwen Max 🌐 | 联网搜索负面舆情，挖掘被忽略的风险，历史相似案例分析 |
+| ⚖️ **组合风险总监** | DeepSeek R1 | 量化风控：止损位、仓位上限、风险收益比计算 |
+| 🎯 **机会分析师** | Gemini 3.1 Pro | 逆向思维，发现被低估的机会，平衡风控的保守视角 |
 
 ### 第四阶段：最高决策层
-| 角色 | 职责 |
-| :--- | :--- |
-| **⚖️ 投资决策总经理** | 拥有最终拍板权。权衡收益（总监报告）与风险（风控报告），给出最终操作指令（买入/卖出/观望）及仓位建议。 |
+
+| 角色 | 使用模型 | 职责 |
+| :--- | :--- | :--- |
+| ⚖️ **投资决策总经理** | GPT-5.2 Pro | 拥有最终拍板权。通盘权衡 11 位专家报告，给出买入/卖出/观望指令 |
+
+> 🌐 标记表示该角色具备联网搜索能力（Google Search Grounding）
 
 ---
 
-## ⚙️ 技术实现细节
+## ⚙️ 技术架构
 
 ### 1. 数据获取层 (Data Layer)
-*   **实时行情**：使用Vercel Serverless Functions代理聚合数据 (Juhe Data) API。
-*   **CORS 处理**：通过 `/api/stock` 后端函数解决跨域问题。
-*   **上下文注入**：获取到的 JSON 数据（如买一卖一、涨跌幅）会被格式化为 Prompt Context，强制注入到每个智能体的系统提示词中。
+* **实时行情**：聚合数据 (Juhe Data) API — 五档盘口、成交量、涨跌幅
+* **资金流向**：东方财富 API — 主力净流入、超大单/大单/中单/小单分类
+* **北向资金**：沪股通 + 深股通实时净流入
+* **K 线数据**：近 10 日日线 + 对应板块指数
+* **财务数据**：基本面核心指标（ROE、负债率、毛利率等近 3 年趋势）
+* **K 线图表**：服务端 Python (matplotlib) 生成 K 线图，供 Gemini Vision 视觉分析
 
-### 2. 模型服务层 (Service Layer)
-*   **Gemini**：通过 `@google/genai` SDK 调用，支持 Google Search Grounding（联网搜索）。
-*   **DeepSeek / Qwen**：通过标准 REST API (`fetch`) 调用，支持 OpenAI 兼容格式。
-*   **Fallback 机制**：如果用户配置的 DeepSeek/Qwen Key 无效或请求失败，系统会自动降级使用 Gemini 模型完成分析，确保流程不中断。
+### 2. AI 模型服务层 (Service Layer)
+* **Gemini 3.1 Pro / 3 Flash**：通过 `@google/genai` SDK 调用，支持多 Key 轮询、Search Grounding 联网搜索、Vision 多模态
+* **DeepSeek R1 / V3.2**：OpenAI 兼容格式 REST API
+* **通义千问 Qwen Max / 3 Max Thinking**：OpenAI 兼容格式 REST API
+* **GPT-5.2 Pro**：通过 OpenRouter 调用
+* **Fallback 机制**：任一模型失败时，自动沿 fallback 链切换备用模型（Gemini → DeepSeek → Qwen）
 
-### 3. 前端交互层 (UI Layer)
-*   **React 19**：利用最新的 Hooks 管理复杂的状态流转。
-*   **Tailwind CSS**：构建响应式布局，完美适配桌面与移动端。
-*   **Audio Context**：使用 Web Audio API 生成动态的机械键盘敲击音效。
+### 3. 后端服务 (Node.js + Express)
+* API 代理与 CORS 处理
+* 浏览器指纹 + 频率限制（防滥用）
+* 支付宝当面付 / H5 支付集成（可选）
+* 订单管理与状态轮询
+
+### 4. 前端交互层 (UI Layer)
+* **React 19 + TypeScript**：Hooks 管理 12 智能体复杂状态
+* **Tailwind CSS**：响应式布局，适配桌面与移动端
+* **实时打字机动画**：逐字输出 AI 分析结果
+* **Web Audio API**：机械键盘敲击音效
+* **Recharts**：行业配置可视化图表
 
 ---
 
-# 🚀 快速开始 - Vercel 部署
+## 🚀 快速开始
+
+### 环境要求
+* Node.js 18+
+* Python 3.8+（用于 K 线图生成，需安装 matplotlib）
+
+### 本地开发
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/chenmisss/AlphaCouncil.git
+cd AlphaCouncil
+
+# 2. 安装依赖
+npm install
+
+# 3. 配置环境变量
+cp .env.example .env
+# 编辑 .env，填入你的 API Key
+
+# 4. 启动开发服务器
+npm run dev
+```
+
+### 部署到 VPS
+
+```bash
+# 构建前端
+npm run build
+
+# 启动后端服务（推荐使用 PM2）
+pm2 start server/index.js --name alphacouncil
+
+# 配置 Nginx 反向代理（详见 DEPLOYMENT.md）
+```
 
 ### 部署到 Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=YOUR_GITHUB_REPO_URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/chenmisss/AlphaCouncil)
 
-#### 快速部署步骤
+在 Vercel 项目设置中配置环境变量即可。
 
-1. **Fork 本仓库到你的 GitHub 账户**
+---
 
-2. **在 Vercel 导入项目**
-   - 访问 [Vercel](https://vercel.com)
-   - 点击 "New Project"
-   - 选择你 fork 的仓库
-   - Vercel 会自动检测 Vite 框架
+## 🔑 API 密钥获取
 
-3. **配置环境变量（强烈推荐）**
-   
-   在 Vercel 项目设置中，添加以下环境变量：
-   
-   ```
-   GEMINI_API_KEY=你的_Gemini_API_密钥
-   DEEPSEEK_API_KEY=你的_DeepSeek_API_密钥
-   JUHE_API_KEY=你的_聚合数据_API_密钥
-   QWEN_API_KEY=你的_通义千问_API_密钥（可选）
-   ```
-   
-   > ⚠️ **重要**：系统会优先使用 Vercel 环境变量中配置的 API Key，前端输入仅作为备用方案。建议在 Vercel 配置所有必需的 API Key 以获得最佳体验。
+| API | 获取地址 | 用途 | 费用 |
+| :--- | :--- | :--- | :--- |
+| **Gemini** | [aistudio.google.com](https://aistudio.google.com/app/apikey) | 分析师 + 视觉分析 + 联网搜索 | 有免费额度 |
+| **DeepSeek** | [platform.deepseek.com](https://platform.deepseek.com/api_keys) | 基本面、动能、风控 | 按量付费 |
+| **通义千问** | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com/apiKey) | 大盘分析、风控 | 有免费额度 |
+| **聚合数据** | [juhe.cn](https://www.juhe.cn/) | A 股实时行情 | 有免费额度 |
+| **OpenRouter** | [openrouter.ai](https://openrouter.ai/keys) | GPT-5.2 Pro（总经理） | 按量付费 |
 
-4. **点击 Deploy**
-   - Vercel 会自动构建并部署你的应用
-   - 部署完成后即可访问
-   - 每次 Git 推送都会自动触发新部署
-
-#### Vercel 环境变量配置位置
-
-1. 进入你的 Vercel 项目
-2. 点击 **Settings** 标签
-3. 选择 **Environment Variables**
-4. 添加上述环境变量
-5. 选择应用环境（Production / Preview / Development）
-6. 点击 **Save**
-
-### 使用说明
-
-部署完成后：
-- 访问您的 Vercel 部署链接
-- 输入股票代码（如 `600519` 或 `sz000001`）
-- （可选）在前端配置面板输入临时 API 密钥
-- 点击"启动分析"开始智能体协作分析
+> 💡 中国大陆用户访问 Gemini API 需要代理。项目附带 `gemini_proxy_worker.js`，可一键部署到 Cloudflare Workers 作为代理。
 
 ---
 
@@ -122,46 +151,15 @@
 
 本系统生成的所有分析报告、投资建议及决策结果均由人工智能模型自动生成，**仅供技术研究与辅助参考，不构成任何实质性的投资建议**。
 
-*   股市有风险，投资需谨慎。
-*   AI 模型可能会产生“幻觉”或基于过时信息进行推理。
-*   请务必结合个人独立判断进行投资操作。
+* 股市有风险，投资需谨慎。
+* AI 模型可能会产生"幻觉"或基于过时信息进行推理。
+* 请务必结合个人独立判断进行投资操作。
 
 ---
 
-## 🔑 API 密钥获取指南
+## 📄 License
 
-### 1. Google Gemini API Key
-- **获取地址**: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-- **用途**: 用于宏观、行业、资金流向分析（支持联网搜索）
-- **费用**: 有免费额度
-
-### 2. DeepSeek API Key
-- **获取地址**: [https://platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys)
-- **用途**: 用于技术分析、基本面估值、总监整合、风控评估、总经理决策
-- **费用**: 按使用量付费，价格低廉
-
-### 3. 聚合数据 API Key
-- **获取地址**: [https://www.juhe.cn/](https://www.juhe.cn/)
-- **用途**: 获取沪深股市实时行情数据（五档盘口、成交量等）
-- **申请接口**: 需要在聚合数据平台申请"沪深股票-基本数据"接口
-- **费用**: 有免费额度
-
-### 4. 通义千问 API Key（可选）
-- **获取地址**: [https://dashscope.console.aliyun.com/apiKey](https://dashscope.console.aliyun.com/apiKey)
-- **用途**: 备用 AI 模型（当前版本未强制使用）
-- **费用**: 有免费额度
-
----
-
-## 💡 前端手动输入 API 密钥（可选）
-
-如果未在 Vercel 配置环境变量，或想使用临时 API 密钥，可以：
-
-1. 在首页点击 **"API 密钥配置（可选）"** 按钮展开配置面板
-2. 输入您的 API 密钥（未填写的将使用 Vercel 环境变量配置）
-3. 点击"启动系统"进行分析
-
-> **安全提示**：前端输入的 API 密钥仅在当前会话中有效，不会被存储到服务器。
+MIT
 
 ---
 
